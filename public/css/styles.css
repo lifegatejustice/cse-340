@@ -15,7 +15,7 @@ html, body{
 }
 
 a {
-  color: #008cba;
+  color: #025a73;
   text-decoration: none;
 }
 
@@ -88,8 +88,8 @@ nav ul li a.nav-link {
 
 nav ul li a.nav-link:hover,
 nav ul li a.nav-link:focus {
-  background-color: #008cba;
-  border-bottom-color: #008cba;
+  background-color: #025a73;
+  border-bottom-color: #025a73;
   outline: none;
 }
 
@@ -123,7 +123,7 @@ main {
 
 .delorean-text h2 {
   font-size: 1.25rem;
-  color: #008cba;
+  color: #025a73;
   margin-bottom: 0.5rem;
 }
 
@@ -139,7 +139,7 @@ main {
 }
 
 .own-today-btn {
-  background-color: #008cba;
+  background-color: #025a73;
   color: #ffffff;
   border: none;
   padding: 0.5rem 1rem;
@@ -151,7 +151,7 @@ main {
 
 .own-today-btn:hover,
 .own-today-btn:focus {
-  background-color: #005f75;
+  background-color: #025a73;
   outline: none;
 }
 
