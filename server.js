@@ -32,7 +32,7 @@ app.get("/", function (req, res) {
  * Local Server Information
  * Values from .env (environment) file
  *************************/
-const port = process.env.PORT || 5500 // Default to 5500 if PORT is not set
+const port = process.env.PORT || 5500
 
 
 /* ***********************

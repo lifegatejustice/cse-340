@@ -1,6 +1,316 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+/* Base styles - Mobile First */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #222222;
+  line-height: 1.6;
+}
+
+html, body{
+  width: 100%;
+  overflow-x: hidden;
+}
+
+a {
+  color: #008cba;
+  text-decoration: none;
+}
+
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+#wrapper {
+  max-width: 100%;
+
+  margin: 0 auto;
+  
+}
+
+header#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #222;
+}
+
+header#top-header .siteName a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222222;
+}
+
+#tools a {
+  font-size: 1rem;
+  color: #222222;
+}
+
+nav {
+  background-color: #222233;
+  width: 100%;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  overflow-x: auto;
+}
+
+  .delorean-text {
+    position: relative;
+    max-width: 50%;
+     background-color: #ebe9e97d;
+     padding: 1vh;
+      z-index: 20;
+  }
+
+nav ul li {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+nav ul li a.nav-link {
+  display: block;
+  padding: 0.75rem 0;
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+}
+
+nav ul li a.nav-link:hover,
+nav ul li a.nav-link:focus {
+  background-color: #008cba;
+  border-bottom-color: #008cba;
+  outline: none;
+}
+
+/* Main content */
+
+main {
+  padding: 1rem 0.5rem;
+}
+
+#top-header {
+  padding: 1rem 0.5rem;
+}
+
+.welcome-section h1 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  position: relative;
+  z-index: 20;
+}
+
+.delorean-info {
+
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+   
+}
+
+.delorean-text h2 {
+  font-size: 1.25rem;
+  color: #008cba;
+  margin-bottom: 0.5rem;
+}
+
+.delorean-text ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 1rem 0;
+  color: #444444;
+}
+
+.delorean-text ul li {
+  margin-bottom: 0.25rem;
+}
+
+.own-today-btn {
+  background-color: #008cba;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.own-today-btn:hover,
+.own-today-btn:focus {
+  background-color: #005f75;
+  outline: none;
+}
+
+.delorean-image img {
+  max-width: 75%;
+  width: auto;
+  height: 35vh;
+  top: 56vh;
+  z-index: 0;
+ margin-left: 22.28%;
+  position:absolute;
+}
+
+/* Reviews and Upgrades Section */
+
+.reviews-upgrades-section {
+  margin-top: 2rem;
+  position: relative;
+  z-index: 20;
+}
+
+.reviews,
+.upgrades {
+  margin-bottom: 2rem;
+}
+
+.reviews h3,
+.upgrades h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.reviews ul {
+  list-style: disc inside;
+  padding-left: 1rem;
+  margin: 0;
+  color: #222222;
+}
+
+.upgrade-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.upgrade-item {
+  flex: 1 1 45%;
+  background-color: #00a9d6;
+  color: #ffffff;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.upgrade-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 0.5rem auto;
+  border-radius: 3px;
+}
+
+.upgrade-link {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.upgrade-link:hover,
+.upgrade-link:focus {
+  color: #cceeff;
+  outline: none;
+}
+
+/* Footer */
+
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  border-top: 1px solid #ccc;
+  font-size: 0.9rem;
+  color: #666666;
+}
+
+.reviews ul{
+  line-height: 4.5;
+}
+
+/* Media Queries for larger screens */
+
+@media screen and (min-width: 768px) {
+
+
+
+
+  .delorean-image img {
+    max-width: 59%;
+    width: auto;
+    height: 40vh;
+    top: 210px;
+    z-index: 0;
+    margin-left: 40.28%;
+    position: absolute;
+  
+  }
+
+  .reviews-upgrades-section {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: flex-start;
+
+  }
+
+  .reviews,
+  .upgrades {
+    max-width: 48%;
+  }
+
+  .upgrade-item {
+    flex: 1 1 45%;
+  }
+
+  .delorean-text{
+  font-size: 2rem;
+}
+ .own-today-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 5px;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .delorean-info {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    gap: 2rem;
+  }
+
+
+
+.delorean-image img {
+  max-width: 60%;
+    height: 40%;
+    width: auto;
+    top: 52vh; /* slightly lifted to adjust for taller image */
+    margin-left: 37.28%; /* moved left for more space */
+    position: absolute;
+    z-index: 0;
+  }
+
+.delorean-text{
+  font-size: 2rem;
+}
 }
