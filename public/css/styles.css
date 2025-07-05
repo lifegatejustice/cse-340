@@ -200,7 +200,7 @@ main {
 
 .upgrade-item {
   flex: 1 1 45%;
-  background-color: #00a9d6;
+  background-color: #025a73;
   color: #ffffff;
   text-align: center;
   padding: 0.5rem;
@@ -223,7 +223,7 @@ main {
 
 .upgrade-link:hover,
 .upgrade-link:focus {
-  color: #cceeff;
+  color: #ffffff;
   outline: none;
 }
 
@@ -265,7 +265,7 @@ footer {
         flex-direction: row-reverse;
         flex-wrap: wrap;
         align-content: center;
-        align-items: flex-start;
+        align-items: center;
 
   }
 
