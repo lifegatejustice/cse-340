@@ -1,11 +1,26 @@
-/* Base styles - Mobile First */
+:root {
+  --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --color-background: #ffffff;
+  --color-text: #222222;
+  --color-primary: #025a73;
+  --color-primary-hover: #025a73;
+  --color-nav-background: #222233;
+  --color-nav-text: #ffffff;
+  --color-nav-hover-background: #025a73;
+  --color-border: #222222;
+  --color-footer-text: #666666;
+  --color-footer-border: #ccc;
+  --color-muted-text: #444444;
+}
+
+ /* Base styles - Mobile First */
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-family-base);
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
-  color: #222222;
+  background-color: var(--color-background);
+  color: var(--color-text);
   line-height: 1.6;
 }
 
@@ -15,7 +30,7 @@ html, body{
 }
 
 a {
-  color: #025a73;
+  color: var( --color-primary);
   text-decoration: none;
 }
 
@@ -88,8 +103,8 @@ nav ul li a.nav-link {
 
 nav ul li a.nav-link:hover,
 nav ul li a.nav-link:focus {
-  background-color: #025a73;
-  border-bottom-color: #025a73;
+  background-color: var( --color-primary);
+  border-bottom-color: var( --color-primary);
   outline: none;
 }
 
@@ -123,7 +138,7 @@ main {
 
 .delorean-text h2 {
   font-size: 1.25rem;
-  color: #025a73;
+  color: var( --color-primary);
   margin-bottom: 0.5rem;
 }
 
@@ -139,7 +154,7 @@ main {
 }
 
 .own-today-btn {
-  background-color: #025a73;
+  background-color: var( --color-primary);
   color: #ffffff;
   border: none;
   padding: 0.5rem 1rem;
@@ -151,7 +166,7 @@ main {
 
 .own-today-btn:hover,
 .own-today-btn:focus {
-  background-color: #025a73;
+  background-color: var( --color-primary);
   outline: none;
 }
 
@@ -200,7 +215,7 @@ main {
 
 .upgrade-item {
   flex: 1 1 45%;
-  background-color: #025a73;
+  background-color: var( --color-primary);
   color: #ffffff;
   text-align: center;
   padding: 0.5rem;
