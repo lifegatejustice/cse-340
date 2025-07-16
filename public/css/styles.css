@@ -30,7 +30,7 @@ html, body{
 }
 
 a {
-  color: var( --color-primary);
+  color: var( --color-nav-text);
   text-decoration: none;
 }
 
@@ -39,6 +39,10 @@ a:hover,
 a:focus {
   text-decoration: underline;
   outline: none;
+}
+
+nav ul li a.nav-link.active {
+  color: var( --color-nav-text) !important;
 }
 
 #wrapper {
@@ -106,6 +110,7 @@ nav ul li a.nav-link:focus {
   background-color: var( --color-primary);
   border-bottom-color: var( --color-primary);
   outline: none;
+  color: var(--color-nav-text);
 }
 
 /* Main content */
