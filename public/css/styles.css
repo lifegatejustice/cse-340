@@ -1,5 +1,6 @@
 :root {
-  --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-family-base: 'Poppins', Arial, sans-serif;
+  --font-family-heading: 'Outfit', Arial, sans-serif;
   --color-background: #ffffff;
   --color-text: #222222;
   --color-primary: #025a73;
@@ -13,7 +14,7 @@
   --color-muted-text: #444444;
 }
 
- /* Base styles - Mobile First */
+/* Base styles - Mobile First */
 
 body {
   font-family: var(--font-family-base);
@@ -29,11 +30,17 @@ html, body{
   overflow-x: hidden;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
 a {
   color: var( --color-nav-text);
   text-decoration: none;
 }
-
 
 a:hover,
 a:focus {
@@ -254,7 +261,7 @@ footer {
   padding: 1rem 0;
   border-top: 1px solid #ccc;
   font-size: 0.9rem;
-  color: #666666;
+  color: var(--color-footer-text);
 }
 
 .reviews ul{
