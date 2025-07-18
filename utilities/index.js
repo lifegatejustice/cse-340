@@ -89,7 +89,7 @@ Util.buildVehicleDetailHTML = async function(vehicle) {
     detail += '<p class="price-value">$' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>'
     detail += '</div>'
     detail += '<div class="nohag2">'
-    detail += '<p class="mileage"><strong>Mileage:</strong> ' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + ' miles</p>'
+    detail += '<p class="mileage"><strong>Mileage:</strong> ' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</p>'
     detail += '</div>'
     detail += '</div>'
     detail += '<p class="doc-fee-note">Does not include $299 Dealer Documentary Service Fee.</p>'

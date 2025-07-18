@@ -122,7 +122,7 @@ nav ul li a.nav-link:focus {
   margin: 30px 0;
   background-color: #f9f9f9;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+ 
 }
 
 
@@ -309,8 +309,12 @@ nav ul li a.nav-link:focus {
 .mileage{
     font-size: 1rem;
     
-    padding-right: 1rem;
+    padding-right: 0.5rem;
     
+}
+
+.mileage p{
+    font-size: 1.2rem;
 }
 
 .nohag1{
@@ -326,6 +330,9 @@ nav ul li a.nav-link:focus {
     align-content: center;
     margin-right: 1rem;
     border: 2px solid var(--color-primary);
+    background-color: #444;
+    color: var(--color-nav-text);
+    
     
 }
 
@@ -333,9 +340,11 @@ nav ul li a.nav-link:focus {
     background-color: var(--color-background);
     padding-top: 2.7rem;
     padding-bottom: 2.7rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     border-right: 2px solid var(--color-primary);
+    font-size: 1rem !important;
+    color: var(--color-text) !important;
 
 }
 
