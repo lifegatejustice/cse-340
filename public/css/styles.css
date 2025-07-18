@@ -404,3 +404,10 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+footer p a{
+  background-color: red;
+  padding: 0.5rem;
+  color: white;
+  font-weight: 900;
+}

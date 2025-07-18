@@ -13,6 +13,7 @@ const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
 const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/index")
+const errorRoute = require("./routes/errorRoute")
 
 
 
@@ -32,6 +33,9 @@ app.use(static)
 app.get("/", baseController.buildHome)
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
+// Error route for intentional 500 error
+app.use("/error", errorRoute)
 
 
 
