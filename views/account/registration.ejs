@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+  <main>
+    <h1 class="formh1"><%= title %></h1>
+
+    <div class="flash-messages">
+      <%- messages('info') %>
+      <%- messages('error') %>
+      <%- messages('warning') %>
+      <%- messages('success') %>
+    </div>
+
+    <div class="login-form-container">
+      <form action="/account/register" method="POST" class="register-form">
+        <label for="account_firstname">First Name:</label>
+        <input type="text" id="account_firstname" name="account_firstname" required value="<%= locals.account_firstname || '' %>" />
+
+        <label for="account_lastname">Last Name:</label>
+        <input type="text" id="account_lastname" name="account_lastname" required value="<%= locals.account_lastname || '' %>" />
+
+        <label for="account_email">Email:</label>
+        <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email || '' %>" />
+
+        <label for="account_password">Password:</label>
+        <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+        <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" />
+<div class="submit-container">
+        <button type="submit" class="btn">Register</button></div>
+      </form>
+    </div>
+  </main>
+
+</body>
+</html>

@@ -148,9 +148,23 @@ main {
    
 }
 
-.delorean-text h2 {
+#messages{
+  
+  color: #721c24;
+  text-align: center;
+  z-index: 1000;
+}
+
+.delorean-text h2{
   font-size: 1.25rem;
-  color: var( --color-primary);
+  color: var( --color-primary) !important;
+  margin-bottom: 0.5rem;
+}
+
+
+.delorean-text h2 a{
+  font-size: 1.25rem;
+  color: var( --color-primary) !important;
   margin-bottom: 0.5rem;
 }
 
@@ -417,4 +431,104 @@ footer p a{
   padding: 0.5rem;
   color: white;
   font-weight: 900;
+}
+
+/* Login form styling */
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #2c3e50;
+  padding: 2rem;
+  max-width: 400px;
+  margin: 2rem auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  color: white;
+  font-family: var(--font-family-base);
+}
+
+.submit-container{
+ display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-container label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.login-form-container input[type="email"],
+.login-form-container input[type="text"],
+.login-form-container input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.login-form-container input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem !important;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+small {
+  font-size: 0.8rem;
+  line-height: 0;
+  margin-bottom: 5px;
+}
+.login-form-container button.btn {
+  background-color: white;
+  color: #2c3e50;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+}
+
+.login-form-container button.btn:hover,
+.login-form-container button.btn:focus {
+  background-color: #34495e;
+  color: white;
+  outline: none;
+}
+
+.login-form-container .register-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.login-form-container .register-link a {
+  color: #ecf0f1;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.login-form-container .register-link a:hover,
+.login-form-container .register-link a:focus {
+  color: #bdc3c7;
+  outline: none;
+}
+
+.formh1{
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
 }
