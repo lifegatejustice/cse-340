@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add New Classification</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <main>
+    <h1>Add New Classification</h1>
+
+    <div class="flash-messages">
+    
+      <%- messages() %>
+    </div>
+
+    <% if (errors) { %>
+      <ul class="notice">
+        <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <form action="/inv/add-classification" method="POST" class="classification-form form-card">
+      <label for="classification_name">Classification Name:</label>
+      <input type="text" id="classification_name" name="classification_name" required pattern="^[A-Za-z0-9]+$" title="No spaces or special characters allowed" value="<%= locals.classification_name || '' %>" />
+      <div class="submit-container">
+        <button type="submit" class="btn">Add Classification</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

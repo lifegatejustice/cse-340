@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <main>
+    <h1 class="formh1 "><%= title %></h1>
+    <form action="/inv/add-inventory" method="post" id="addInventoryForm" class="form-container form-card">
+      <label for="classificationList">Classification:</label>
+      <%- classificationList %>
+      <label for="inv_make">Make:</label>
+      <input type="text" id="inv_make" name="inv_make" value="<%= inv_make %>" required class="form-input" />
+      <label for="inv_model">Model:</label>
+      <input type="text" id="inv_model" name="inv_model" value="<%= inv_model %>" required class="form-input" />
+      <label for="inv_year">Year:</label>
+      <input type="number" id="inv_year" name="inv_year" value="<%= inv_year %>" min="1900" max="2099" required class="form-input" />
+      <label for="inv_description">Description:</label>
+      <textarea id="inv_description" name="inv_description" required class="form-textarea"><%= inv_description %></textarea>
+      <label for="inv_price">Price:</label>
+      <input type="number" id="inv_price" name="inv_price" value="<%= inv_price %>" min="0" step="0.01" required class="form-input" />
+      <label for="inv_miles">Miles:</label>
+      <input type="number" id="inv_miles" name="inv_miles" value="<%= inv_miles %>" min="0" required class="form-input" />
+      <label for="inv_color">Color:</label>
+      <input type="text" id="inv_color" name="inv_color" value="<%= inv_color %>" required class="form-input" />
+      <label for="inv_image">Image URL:</label>
+      <input type="text" id="inv_image" name="inv_image" value="<%= inv_image || '' %>" class="form-input" />
+      <label for="inv_thumbnail">Thumbnail URL:</label>
+      <input type="text" id="inv_thumbnail" name="inv_thumbnail" value="<%= inv_thumbnail || '' %>" class="form-input" />
+      <button type="submit" class="btn btn-primary btn-modern">Add Vehicle</button>
+    </form>
+    <% if (errors && errors.length > 0) { %>
+      <ul class="errors">
+        <% errors.forEach(function(error) { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </main>
+</body>
+</html>

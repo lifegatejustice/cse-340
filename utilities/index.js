@@ -93,7 +93,7 @@ Util.buildVehicleDetailHTML = async function(vehicle) {
     detail += '</div>';
     detail += '<div class="info-div">';
     detail += '<div class="info">';
-
+ 
     detail += '<p class="mpg"><strong>Year:</strong> ' +  (vehicle.inv_year || 'N/A') + ' (City / Hwy)</p>';
     
     detail += '<ul class="specs-list">';
@@ -116,11 +116,11 @@ Util.buildVehicleDetailHTML = async function(vehicle) {
     detail += '<button class="btn btn-secondary">Apply for Financing</button>';
     detail += '</div>';
     detail += '</div>';
-
+ 
        detail += '<p class="certification-note">This vehicle has passed inspection by an ASE-certified technician.</p>';
     detail += '<p class="rental-note">The principal prior use of this vehicle was as a Rental Vehicle.</p>';
-
-
+ 
+ 
     // Dealer Contact Info
     detail += '<div class="dealer-contact">';
     detail += '<p><strong>Call Us: </strong> <a href="tel:+234-814-090-8524">  +234-814-090-8524</a></p>';
