@@ -68,4 +68,21 @@ router.post(
 // Route to deliver inventory management view
 router.get("/", invController.buildManagement);
 
+// Route to get inventory items by classification as JSON
+const utilities = require("../utilities/index");
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
+/* Route to build edit inventory view */
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
+
+const inventoryValidation = require("../utilities/inventory-validation");
+
+/* Route to process update inventory form submission */
+router.post(
+  "/update",
+  inventoryValidation.newInventoryRules(),
+  inventoryValidation.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+);
+
 module.exports = router;

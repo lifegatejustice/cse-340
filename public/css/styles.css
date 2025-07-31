@@ -677,3 +677,61 @@ small {
   margin: 0.5rem 0;
   color: white;
 }
+
+/* Styles for inventory management select list and table */
+
+#classificationList {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  margin-bottom: 1rem;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+#inventoryDisplay {
+  width: 100%;
+  max-width: 800px;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+}
+
+#inventoryDisplay thead tr {
+  background-color: #2c3e50;
+  color: white;
+  text-align: left;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+}
+
+#inventoryDisplay tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#inventoryDisplay tbody tr:hover {
+  
+  
+}
+
+#inventoryDisplay a {
+  color: var(--color-nav-background);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#inventoryDisplay a:hover, .inventoryDisplay td:hover,
+#inventoryDisplay a:focus {
+  text-decoration: underline;
+  
+  outline: none;
+  font-weight: bolder;
+}

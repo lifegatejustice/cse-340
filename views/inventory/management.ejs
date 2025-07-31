@@ -13,7 +13,7 @@
 
     
   
-      <%- messages('success') %>
+      <%- messages() %>
   
 
     <div class="classification form-card">
@@ -22,6 +22,16 @@
    </div> <div class="class2"><a href="/inv/add-inventory">Add New Inventory</a></li>
     </div>
     </div>
+
+    <h2>Manage Inventory</h2>
+    <p>Choose a classification to see the inventory items.</p>
+    <div>
+      <%- classificationSelect %>
+    </div>
+    <table id="inventoryDisplay"></table>
+    <noscript>JavaScript must be enabled to use this page.</noscript>
+
+    <script src="../../js/inventory.js"></script>
   </main>
 </body>
 </html>
