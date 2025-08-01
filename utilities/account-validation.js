@@ -1,6 +1,9 @@
 const { body } = require('express-validator');
 const accountModel = require('../models/account-model');
 
+
+
+
 const registrationRules = [
   // First name is required and must be at least 2 characters
   body('account_firstname')
@@ -53,7 +56,54 @@ const loginRules = [
     .withMessage('Password is required.'),
 ];
 
+const updateAccountRules = [
+  // First name is required and must be at least 2 characters
+  body('account_firstname')
+    .trim()
+    .isLength({ min: 2 })
+    .withMessage('First name must be at least 2 characters long.'),
+
+  // Last name is required and must be at least 2 characters
+  body('account_lastname')
+    .trim()
+    .isLength({ min: 2 })
+    .withMessage('Last name must be at least 2 characters long.'),
+
+  // Email is required and must be valid and normalized
+  body('account_email')
+    .trim()
+    .isEmail()
+    .normalizeEmail()
+    .withMessage('A valid email is required.')
+    .custom(async (account_email, { req }) => {
+      const emailExists = await accountModel.checkExistingEmail(account_email);
+      if (emailExists) {
+        // Allow if the email belongs to the current user
+        const currentAccountId = parseInt(req.body.account_id);
+        const existingAccount = await accountModel.getAccountByEmail(account_email);
+        if (existingAccount && existingAccount.account_id !== currentAccountId) {
+          throw new Error('Email exists. Please use a different email.');
+        }
+      }
+    }),
+];
+
+const changePasswordRules = [
+  // New password is required and must meet complexity requirements
+  body('new_password')
+    .isStrongPassword({
+      minLength: 12,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+    })
+    .withMessage('Password must be at least 12 characters and include 1 uppercase letter, 1 number, and 1 special character.'),
+];
+
 module.exports = {
   registrationRules,
   loginRules,
+  updateAccountRules,
+  changePasswordRules,
 };

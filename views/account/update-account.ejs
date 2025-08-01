@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update Account</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <main>
+    <h1 class="formh1">Update Account</h1>
+
+    <%- messages() %>
+
+    <% if (errors && errors.length > 0) { %>
+      <ul class="errors">
+        <% errors.forEach(function(error) { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <div class="form-card">
+
+    <form action="/account/update" method="POST" id="updateAccountForm">
+      <input type="hidden" name="account_id" value="<%= accountData.account_id %>" />
+      <label for="account_firstname">First Name:</label>
+      <input type="text" id="account_firstname" name="account_firstname" value="<%= accountData.account_firstname %>" required />
+
+      <label for="account_lastname">Last Name:</label>
+      <input type="text" id="account_lastname" name="account_lastname" value="<%= accountData.account_lastname %>" required />
+
+      <label for="account_email">Email:</label>
+      <input type="email" id="account_email" name="account_email" value="<%= accountData.account_email %>" required />
+
+      <button type="submit" class="btn btn-primary btn-modern">Update Account</button>
+    </form>
+
+    <hr />
+
+    <form action="/account/change-password" method="POST" id="changePasswordForm">
+      <input type="hidden" name="account_id" value="<%= accountData.account_id %>" />
+      <label for="new_password">New Password:</label>
+      <input type="password" id="new_password" name="new_password" required minlength="8" />
+
+      <button type="submit" class="btn btn-primary btn-modern">Change Password</button>
+    </form></div>
+  </main>
+</body>
+</html>

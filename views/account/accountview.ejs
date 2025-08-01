@@ -12,14 +12,21 @@
   <main>
     <h1 class="formh1"><%= title %></h1>
 
-    
-      
-      <%- messages() %>
-    
-<div>
-    <p>You're Logged in</p>
+    <%- messages() %>
+<div class="form-card">
+    <h2 class="wel">Welcome <%= accountData.account_firstname %></h2>
+
+    <div class="class11">
+    <p><a href="/account/update/<%= accountData.account_id %>">Update Account Information</a></p>
+</div>
+    <% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
+      <h3>Inventory Management</h3>
+      <div class="class22">
+      <p><a href="/inv/">Go to Inventory Management</a></p>
+    <% } %></div>
 </div>
 
+<p><a href="/account/logout" class="btn btn-secondary">Logout</a></p>
   </main>
  
 </body>

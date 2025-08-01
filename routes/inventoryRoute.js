@@ -1,20 +1,26 @@
-const express = require("express")
-const router = new express.Router() 
-const invController = require("../controllers/invController")
-const { body } = require("express-validator")
+const express = require("express");
+const router = new express.Router();
+const invController = require("../controllers/invController");
+const { body } = require("express-validator");
+const inventoryValidation = require("../utilities/inventory-validation");
+const utilities = require("../utilities/index");
 
-// Route to build inventory by classification view
+/* Middleware to restrict access to Employee and Admin only */
+const checkEmployeeAdmin = utilities.checkEmployeeAdmin;
+
+/* Route to build inventory by classification view */
 router.get("/type/:classificationId", invController.buildByClassificationId);
 
-// Route to build inventory detail view by inventory id
+/* Route to build inventory detail view by inventory id */
 router.get("/detail/:invId", invController.buildByInventoryId);
 
-// Route to deliver add-classification view
-router.get("/add-classification", invController.buildAddClassification);
+/* Route to deliver add-classification view */
+router.get("/add-classification", checkEmployeeAdmin, invController.buildAddClassification);
 
-// Route to process add-classification form submission
+/* Route to process add-classification form submission */
 router.post(
   "/add-classification",
+  checkEmployeeAdmin,
   body("classification_name")
     .trim()
     .isLength({ min: 1 })
@@ -24,65 +30,40 @@ router.post(
   invController.processAddClassification
 );
 
-// Route to deliver add-inventory view
-router.get("/add-inventory", invController.buildAddInventory);
+/* Route to deliver add-inventory view */
+router.get("/add-inventory", checkEmployeeAdmin, invController.buildAddInventory);
 
-// Route to process add-inventory form submission
+/* Route to process add-inventory form submission */
 router.post(
   "/add-inventory",
-  body("classification_id")
-    .trim()
-    .isInt({ min: 1 })
-    .withMessage("Classification is required"),
-  body("inv_make")
-    .trim()
-    .isLength({ min: 1 })
-    .withMessage("Make is required"),
-  body("inv_model")
-    .trim()
-    .isLength({ min: 1 })
-    .withMessage("Model is required"),
-  body("inv_year")
-    .trim()
-    .isInt({ min: 1900, max: 2099 })
-    .withMessage("Year must be a valid year"),
-  body("inv_description")
-    .trim()
-    .isLength({ min: 1 })
-    .withMessage("Description is required"),
-  body("inv_price")
-    .trim()
-    .isFloat({ min: 0 })
-    .withMessage("Price must be a positive number"),
-  body("inv_miles")
-    .trim()
-    .isInt({ min: 0 })
-    .withMessage("Miles must be a positive integer"),
-  body("inv_color")
-    .trim()
-    .isLength({ min: 1 })
-    .withMessage("Color is required"),
+  checkEmployeeAdmin,
+  inventoryValidation.newInventoryRules(),
+  inventoryValidation.checkUpdateData,
   invController.processAddInventory
 );
 
-// Route to deliver inventory management view
-router.get("/", invController.buildManagement);
+/* Route to deliver inventory management view */
+router.get("/", checkEmployeeAdmin, invController.buildManagement);
 
-// Route to get inventory items by classification as JSON
-const utilities = require("../utilities/index");
+/* Route to get inventory items by classification as JSON */
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
 
 /* Route to build edit inventory view */
-router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
-
-const inventoryValidation = require("../utilities/inventory-validation");
+router.get("/edit/:inv_id", checkEmployeeAdmin, utilities.handleErrors(invController.editInventoryView));
 
 /* Route to process update inventory form submission */
 router.post(
   "/update",
+  checkEmployeeAdmin,
   inventoryValidation.newInventoryRules(),
   inventoryValidation.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
 );
+
+/* Route to deliver delete confirmation view */
+router.get("/delete/:inv_id", checkEmployeeAdmin, utilities.handleErrors(invController.deleteInventoryView));
+
+/* Route to process delete inventory form submission */
+router.post("/delete", checkEmployeeAdmin, utilities.handleErrors(invController.deleteInventory));
 
 module.exports = router;

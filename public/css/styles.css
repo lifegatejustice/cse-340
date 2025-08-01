@@ -490,13 +490,25 @@ footer p a{
   box-sizing: border-box;
 }
 
+input[type="email"],
+ input[type="text"],
+ input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
 small {
   font-size: 0.8rem;
   line-height: 0;
   margin-bottom: 5px;
 }
 .login-form-container button.btn {
-  background-color: white;
+  background-color: #44c823;
   color: #2c3e50;
   border: none;
   padding: 0.75rem 2rem;
@@ -510,10 +522,32 @@ small {
 
 .login-form-container button.btn:hover,
 .login-form-container button.btn:focus {
-  background-color: #34495e;
+  background-color: #44c823;
   color: white;
   outline: none;
 }
+
+
+.btn-secondary {
+      background-color: #dc3545; /* Bootstrap danger red */
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      margin-left: 1rem;
+    }
+
+    .btn-secondary:hover {
+      background-color: #c82333;
+      
+    }
+
+
+
+
 
 .login-form-container .register-link {
   text-align: center;
@@ -601,7 +635,7 @@ small {
 
 .form-card button.btn:hover,
 .form-card button.btn:focus {
-  background-color: #34495e;
+  background-color: #44c823;
   color: white;
   outline: none;
 }
@@ -734,4 +768,35 @@ small {
   
   outline: none;
   font-weight: bolder;
+}
+
+
+
+.class11, .class22 {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    /* margin: 2rem auto; */
+    max-width: 250px;
+    background-color: var(--color-background);
+    flex-direction: row;
+    border: 20px;
+    border-radius: 20px;
+    padding: 0.5rem;
+    color: #2c3e50 !important;
+    align-content: flex-start;
+}
+
+.class11 a , .class22 a{
+  color: #2c3e50 !important;
+  font-weight: bold;
+}
+
+
+.wel{
+  text-align: center;
+}
+
+.class11{
+  margin-bottom: 1rem;
 }
