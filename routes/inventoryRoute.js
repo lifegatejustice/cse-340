@@ -5,6 +5,10 @@ const { body } = require("express-validator");
 const inventoryValidation = require("../utilities/inventory-validation");
 const utilities = require("../utilities/index");
 
+router.get('/contact/:invId', invController.buildContactForm);
+router.post('/contact', invController.processContactForm);
+router.get('/inquiries', invController.buildInquiryList);
+
 /* Middleware to restrict access to Employee and Admin only */
 const checkEmployeeAdmin = utilities.checkEmployeeAdmin;
 

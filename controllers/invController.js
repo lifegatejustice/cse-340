@@ -1,7 +1,115 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
 
-const invCont = {}
+
+const invCont = {
+
+  async buildContactForm(req, res, next) {
+    try {
+      const inv_id = req.params.invId;
+      const vehicle = await invModel.getInventoryById(inv_id);
+      
+      if (!vehicle) {
+        return res.status(404).render("errors/error", {
+          title: "Vehicle Not Found",
+          message: "Sorry, the requested vehicle was not found."
+        });
+      }
+
+      let nav = await utilities.getNav();
+      const title = `Contact About ${vehicle.inv_make} ${vehicle.inv_model}`;
+      
+      res.render("./inventory/contact-form", {
+        title,
+        nav,
+        vehicle,
+        errors: null,
+        formData: {}
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async processContactForm(req, res, next) {
+    try {
+      const { inv_id, customer_name, customer_email, customer_phone, message } = req.body;
+      
+      // Validate input
+      const errors = [];
+      if (!customer_name?.trim()) errors.push("Name is required");
+      if (!customer_email?.trim()) errors.push("Email is required");
+      if (!message?.trim()) errors.push("Message is required");
+      
+      if (errors.length > 0) {
+        const vehicle = await invModel.getInventoryById(inv_id);
+        let nav = await utilities.getNav();
+        return res.status(400).render("./inventory/contact-form", {
+          title: "Contact Dealer",
+          nav,
+          vehicle,
+          errors,
+          formData: req.body
+        });
+      }
+
+      // Save inquiry
+      await inquiryModel.createInquiry({
+        inv_id: parseInt(inv_id),
+        customer_name,
+        customer_email,
+        customer_phone,
+        message
+      });
+
+      // Send email (configure with your SMTP settings)
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+        }
+      });
+
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.DEALER_EMAIL,
+        subject: `New Inquiry: ${vehicle.inv_make} ${vehicle.inv_model}`,
+        html: `
+          <h2>New Vehicle Inquiry</h2>
+          <p><strong>Vehicle:</strong> ${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</p>
+          <p><strong>Customer:</strong> ${customer_name}</p>
+          <p><strong>Email:</strong> ${customer_email}</p>
+          <p><strong>Phone:</strong> ${customer_phone || 'Not provided'}</p>
+          <p><strong>Message:</strong> ${message}</p>
+        `
+      };
+
+      await transporter.sendMail(mailOptions);
+
+      req.flash('success', 'Your inquiry has been sent successfully! We will contact you soon.');
+      res.redirect(`/inv/detail/${inv_id}`);
+      
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async buildInquiryList(req, res, next) {
+    try {
+      let nav = await utilities.getNav();
+      const inquiries = await inquiryModel.getAllInquiries();
+      
+      res.render("./inventory/inquiry-list", {
+        title: "Customer Inquiries",
+        nav,
+        inquiries: inquiries.rows
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+};
 
 /* ***************************
  *  Build inventory by classification view
@@ -27,27 +135,28 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build inventory detail view by inventory id
  * ************************** */
 invCont.buildByInventoryId = async function (req, res, next) {
-  try {
-    const inv_id = req.params.invId
-    const vehicle = await invModel.getInventoryById(inv_id)
-    if (!vehicle) {
-      res.status(404).render("errors/error", {
-        title: "Vehicle Not Found",
-        message: "Sorry, the requested vehicle was not found.",
+    try {
+      const inv_id = req.params.invId
+      const vehicle = await invModel.getInventoryById(inv_id)
+      if (!vehicle) {
+        res.status(404).render("errors/error", {
+          title: "Vehicle Not Found",
+          message: "Sorry, the requested vehicle was not found.",
+        })
+        return
+      }
+      const detail = await utilities.buildVehicleDetailHTML(vehicle)
+      let nav = await utilities.getNav()
+      const title = `${vehicle.inv_make} ${vehicle.inv_model}`
+      res.render("./inventory/detail", {
+        title,
+        nav,
+        detail,
+        vehicle,
       })
-      return
+    } catch (error) {
+      next(error)
     }
-    const detail = await utilities.buildVehicleDetailHTML(vehicle)
-    let nav = await utilities.getNav()
-    const title = `${vehicle.inv_make} ${vehicle.inv_model}`
-    res.render("./inventory/detail", {
-      title,
-      nav,
-      detail,
-    })
-  } catch (error) {
-    next(error)
-  }
 }
 
 /* ***************************
@@ -459,5 +568,113 @@ invCont.deleteInventory = async function (req, res, next) {
     next(error)
   }
 }
+
+
+invCont.buildContactForm = async function (req, res, next) {
+    try {
+      const inv_id = req.params.invId;
+      const vehicle = await invModel.getInventoryById(inv_id);
+      
+      if (!vehicle) {
+        return res.status(404).render("errors/error", {
+          title: "Vehicle Not Found",
+          message: "Sorry, the requested vehicle was not found."
+        });
+      }
+
+      let nav = await utilities.getNav();
+      const title = `Contact About ${vehicle.inv_make} ${vehicle.inv_model}`;
+      
+      res.render("./inventory/contact-form", {
+        title,
+        nav,
+        vehicle,
+        errors: null,
+        formData: {}
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+invCont.processContactForm = async function (req, res, next) {
+    try {
+      const { inv_id, customer_name, customer_email, customer_phone, message } = req.body;
+      
+      // Validate input
+      const errors = [];
+      if (!customer_name?.trim()) errors.push("Name is required");
+      if (!customer_email?.trim()) errors.push("Email is required");
+      if (!message?.trim()) errors.push("Message is required");
+      
+      if (errors.length > 0) {
+        const vehicle = await invModel.getInventoryById(inv_id);
+        let nav = await utilities.getNav();
+        return res.status(400).render("./inventory/contact-form", {
+          title: "Contact Dealer",
+          nav,
+          vehicle,
+          errors,
+          formData: req.body
+        });
+      }
+
+      // Save inquiry
+      await inquiryModel.createInquiry({
+        inv_id: parseInt(inv_id),
+        customer_name,
+        customer_email,
+        customer_phone,
+        message
+      });
+
+      // Send email (configure with your SMTP settings)
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+        }
+      });
+
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.DEALER_EMAIL,
+        subject: `New Inquiry: ${vehicle.inv_make} ${vehicle.inv_model}`,
+        html: `
+          <h2>New Vehicle Inquiry</h2>
+          <p><strong>Vehicle:</strong> ${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</p>
+          <p><strong>Customer:</strong> ${customer_name}</p>
+          <p><strong>Email:</strong> ${customer_email}</p>
+          <p><strong>Phone:</strong> ${customer_phone || 'Not provided'}</p>
+          <p><strong>Message:</strong> ${message}</p>
+        `
+      };
+
+      await transporter.sendMail(mailOptions);
+
+      req.flash('success', 'Your inquiry has been sent successfully! We will contact you soon.');
+      res.redirect(`/inv/detail/${inv_id}`);
+      
+    } catch (error) {
+      next(error);
+    }
+  };
+
+invCont.buildInquiryList = async function (req, res, next) {
+    try {
+      let nav = await utilities.getNav();
+      const inquiries = await inquiryModel.getAllInquiries();
+      
+      res.render("./inventory/inquiry-list", {
+        title: "Customer Inquiries",
+        nav,
+        inquiries: inquiries.rows
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
 
 module.exports = invCont
