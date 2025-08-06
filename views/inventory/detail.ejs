@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="/css/detail.css" />
 </head>
 <body>
-
+<%- messages() %>
   <main>
     <h1><%= title %></h1>
     <section>
       <%- detail %>
       <div class="vehicle-actions">
-  <a href="/inv/contact/<%= detail.inv_id %>" class="btn btn-primary">Contact Dealer</a>
+  <a href="/inv/contact/<%= vehicle.inv_id %>" class="btn btn-secondary">Contact Dealer</a>
 
 </div>
 

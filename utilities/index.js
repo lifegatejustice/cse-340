@@ -111,7 +111,7 @@ Util.buildVehicleDetailHTML = async function(vehicle) {
     // Call to Action Buttons
     detail += '<div class="cta-buttons">';
     detail += '<button class="btn btn-primary">Start My Purchase</button>';
-    detail += '<button class="btn btn-secondary">Contact Us</button>';
+   
     detail += '<button class="btn btn-secondary">Schedule Test Drive</button>';
     detail += '<button class="btn btn-secondary">Apply for Financing</button>';
     detail += '</div>';
