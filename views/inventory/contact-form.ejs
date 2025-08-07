@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><%= title %> | Contact Dealer</title>
   <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/detail.css" />
   <link rel="stylesheet" href="/css/contact-form.css" />
 </head>
 <body>
-  <%- include('../partials/header') %>
+
   <main>
     <h1>Contact About <%= vehicle.inv_year %> <%= vehicle.inv_make %> <%= vehicle.inv_model %></h1>
     
@@ -24,14 +25,17 @@
 
     <section class="contact-form-container">
       <div class="vehicle-preview">
-        <img src="<%= vehicle.inv_image %>" alt="<%= vehicle.inv_make %> <%= vehicle.inv_model %>" />
+        <div class="vehicle-info1">
+          <div class="nohag11">
+       <figure class="vehicle-images"> <img class="main-image" src="<%= vehicle.inv_image %>" alt="<%= vehicle.inv_make %> <%= vehicle.inv_model %>" /></figure>
         <h3><%= vehicle.inv_year %> <%= vehicle.inv_make %> <%= vehicle.inv_model %></h3>
-        <p class="price">$<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %></p>
-      </div>
+        <p class="price price-value">$<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %></p>
+      </div></div>
 
       <form action="/inv/contact" method="POST" class="contact-form">
         <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
-        
+        </div>
+        <div class="form-card">
         <div class="form-group">
           <label for="customer_name">Full Name *</label>
           <input type="text" id="customer_name" name="customer_name" 
@@ -56,9 +60,9 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Send Inquiry</button>
-      </form>
+      </form></div>
     </section>
   </main>
-  <%- include('../partials/footer') %>
+
 </body>
 </html>

@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="/css/inquiry.css">
+<body>
+ 
+  
+  <main>
+    <h1>Customer Inquiries</h1>
+    
+    <% if (inquiries && inquiries.length > 0) { %>
+      <table class="inquiry-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Customer Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Vehicle</th>
+            <th>Message</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% inquiries.forEach(inquiry => { %>
+            <tr>
+             <td data-label="Date"><%= new Date(inquiry.inquiry_date).toLocaleDateString() %></td>
+<td data-label="Customer Name"><%= inquiry.customer_name %></td>
+<td data-label="Email"><%= inquiry.customer_email %></td>
+<td data-label="Phone"><%= inquiry.customer_phone || 'N/A' %></td>
+<td data-label="Vehicle">
+  <% if (inquiry.inv_make && inquiry.inv_model) { %>
+    <%= inquiry.inv_year %> <%= inquiry.inv_make %> <%= inquiry.inv_model %>
+  <% } else { %>
+    Vehicle ID: <%= inquiry.inv_id %>
+  <% } %>
+</td>
+<td data-label="Message"><%= inquiry.message %></td>
+<td data-label="Status"><%= inquiry.status || 'new' %></td>
+
+
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No inquiries found.</p>
+    <% } %>
+  </main>
+
+  
+</body>
+</html>
