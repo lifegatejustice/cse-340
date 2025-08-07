@@ -248,3 +248,32 @@ WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 UPDATE public.inventory
 SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
     inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
+
+
+-- inquiries.sql
+CREATE TABLE IF NOT EXISTS public.inquiries (
+    inquiry_id SERIAL PRIMARY KEY,
+    inv_id INTEGER NOT NULL REFERENCES public.inventory(inv_id) ON DELETE CASCADE,
+    customer_name VARCHAR(100) NOT NULL,
+    customer_email VARCHAR(255) NOT NULL,
+    customer_phone VARCHAR(20),
+    message TEXT NOT NULL,
+    inquiry_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) DEFAULT 'new',
+    responded_date TIMESTAMP,
+    responded_by INTEGER REFERENCES public.account(account_id)
+);
+
+CREATE INDEX idx_inquiries_vehicle ON public.inquiries(inv_id);
+CREATE INDEX idx_inquiries_date ON public.inquiries(inquiry_date);
+
+CREATE TABLE IF NOT EXISTS inquiries (
+    inquiry_id SERIAL PRIMARY KEY,
+    inv_id INTEGER NOT NULL REFERENCES inventory(inv_id) ON DELETE CASCADE,
+    customer_name VARCHAR(100) NOT NULL,
+    customer_email VARCHAR(255) NOT NULL,
+    customer_phone VARCHAR(20),
+    message TEXT NOT NULL,
+    inquiry_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) DEFAULT 'new'
+);

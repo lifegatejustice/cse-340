@@ -20,7 +20,12 @@
         <div class="class1">
       <a href="/inv/add-classification">Add New Classification</a></li>
    </div> <div class="class2"><a href="/inv/add-inventory">Add New Inventory</a></li>
-    </div>
+   </div>
+   <% if (locals.accountData && locals.accountData.account_type === 'Admin') { %>
+   <div class="class3">
+      <a href="/inv/inquiries">View Customer Inquiries</a>
+   </div>
+   <% } %>
     </div>
 
     <h2>Manage Inventory</h2>

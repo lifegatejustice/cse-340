@@ -598,6 +598,8 @@ small {
 
 .form-card input[type="text"],
 .form-card input[type="number"],
+.form-card input[type="tel"],
+
 .form-card textarea,
 .form-card select {
   width: 100%;
@@ -687,7 +689,7 @@ small {
     padding: 1rem;
 }
 
-.class1, .class2 {
+.class1, .class2, .class3 {
   display: flex;
     align-items: center;
     justify-content: center;
@@ -701,7 +703,7 @@ small {
    color: var(--color-nav-background) !important;
 }
 
-.class1 a , .class2 a{
+.class1 a , .class2 a, .class3 a {
   color: var(--color-nav-background) !important;
   font-weight: bold;
 }
@@ -800,3 +802,6 @@ small {
 .class11{
   margin-bottom: 1rem;
 }
+
+
+
